@@ -14,14 +14,15 @@ jobs:
       - run: ls -la
       - run: pwd
       - run: env
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4 # svolge git clone
         with:
           sparse-checkout: |
             cavescu
       - run: ls -la
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5 # equivalente di venv
         with:
           python-version: '3.13.2' 
       - run: python --version
+      - run: pip install -r requirements.txt
       - run: python train_direction.py
         working-directory: cavescu
