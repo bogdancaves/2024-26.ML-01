@@ -24,3 +24,4 @@ jobs:
           python-version: '3.13.2' 
       - run: python --version
       - run: python train_direction.py
+        working-directory: cavescu
