@@ -7,6 +7,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder, MinMaxScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+import joblib
 
 df = pd.read_csv("joined_df.csv")
 
@@ -63,3 +64,5 @@ print(f"Accuracy: {accuracy:.2f}")
 report = classification_report(y_test, y_pred_best)
 print("\nClassification Report:")
 print(report)
+
+joblib.dump(best_model, "artifact.joblib")
