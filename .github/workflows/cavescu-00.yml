@@ -22,8 +22,8 @@ jobs:
       - uses: actions/setup-python@v5 # equivalente di venv
         with:
           python-version: '3.13.2' 
-      - run: cd cavescu # cambia directory
-      - run: pwd
       - run: python --version
       - run: pip install -r requirements.txt
+        working-directory: cavescu
       - run: python train_direction.py
+        working-directory: cavescu
