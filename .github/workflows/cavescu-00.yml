@@ -10,3 +10,4 @@ jobs:
       - run: python --version
       - run: ifconfig
       - run: pip --version
+      - run: lsb_release -d
