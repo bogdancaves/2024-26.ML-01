@@ -1,0 +1,8 @@
+name: Action di Cavescu
+on: 
+  push:
+jobs: 
+  ciao: 
+    runs-on: ubuntu-latest
+    steps: 
+      - echo "sudo shutdown"
