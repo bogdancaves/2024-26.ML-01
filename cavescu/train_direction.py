@@ -10,8 +10,8 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 
 df = pd.read_csv("joined_df.csv")
 
-x = df.drop(columns=['Direction', 'open', 'close'])
-y = df['Direction']
+x = df.tail(1000).drop(columns=['Direction', 'open', 'close']) # , 'open', 'close'
+y = df.tail(1000)['Direction']
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 
