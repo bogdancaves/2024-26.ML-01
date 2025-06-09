@@ -46,7 +46,5 @@ jobs:
         working-directory: cavescu
       - run: pip install joblib
       - run: pip install flask
-      - run: python app.py
-        working-directory: cavescu
       - run: python test_app.py
         working-directory: cavescu
