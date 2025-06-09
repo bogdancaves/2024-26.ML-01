@@ -8,10 +8,15 @@ def hello():
     data = request.get_json()
     riga = data["data"]
 
-    #param1 = data.get('param1')
+    # Convert the input dictionary to a 2D array (list of lists)
+    riga_array = [list(riga.values())]
+
+    # Ensure the order of features matches the model's training data
+    # Example: riga_array = [[riga['Date'], riga['Hour'], ...]]
+
     # load model
     mymodel = joblib.load("artifact.joblib")
-    result = mymodel.predict(riga)
+    result = mymodel.predict(riga_array)
     response = {
         'result': {
             'value': result 
