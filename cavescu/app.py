@@ -16,9 +16,12 @@ def hello():
     mymodel = joblib.load("artifact.joblib")
     result = mymodel.predict(riga_df)
 
+    # Extract the first element if the result is a single-value list
+    result_value = result[0] if len(result) == 1 else result.tolist()
+
     response = {
         'result': {
-            'value': result.tolist()  # Convert numpy array to list for JSON serialization
+            'value': result_value  # Return the single value or the full list
         }
     }
 
