@@ -2,7 +2,7 @@ name: Action di Cavescu
 on: 
   push:
 jobs: 
-  ciao: 
+  train: 
     runs-on: ubuntu-latest
     steps: 
       - run: echo "ciao sono una stringa"
@@ -32,3 +32,20 @@ jobs:
         with:
           name: best-artifact
           path: cavescu/artifact.joblib
+  infer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 # svolge git clone
+        with:
+          sparse-checkout: |
+            cavescu
+      - uses: actions/setup-python@v5 # equivalente di venv
+        with:
+          python-version: '3.13.2'
+      - run: pip install -r requirements.txt
+        working-directory: cavescu
+      - run: pip install joblib
+      - run: python app.py
+        working-directory: cavescu
+      - run: python test_app.py
+        working-directory: cavescu
