@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import joblib
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -8,18 +9,16 @@ def hello():
     data = request.get_json()
     riga = data["data"]
 
-    # Convert the input dictionary to a 2D array (list of lists)
-    riga_array = [list(riga.values())]
+    # Convert the input dictionary to a pandas DataFrame
+    riga_df = pd.DataFrame([riga])
 
-    # Ensure the order of features matches the model's training data
-    # Example: riga_array = [[riga['Date'], riga['Hour'], ...]]
-
-    # load model
+    # Load model
     mymodel = joblib.load("artifact.joblib")
-    result = mymodel.predict(riga_array)
+    result = mymodel.predict(riga_df)
+
     response = {
         'result': {
-            'value': result 
+            'value': result.tolist()  # Convert numpy array to list for JSON serialization
         }
     }
 
